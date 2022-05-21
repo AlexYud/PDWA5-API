@@ -5,7 +5,9 @@ class HomeController {
   }
 
   getTime(req, res) {
-    res.status(200).json()
+    var date = new Date();
+    date = date.toLocaleTimeString({hour: '2-digit', minute:'2-digit', second: '2-digit'});
+    res.status(200).json(date)
   }
 
 }
