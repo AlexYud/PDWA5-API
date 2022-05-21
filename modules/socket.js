@@ -10,6 +10,22 @@ module.exports = function (io) {
     Users.addUser(user)
     console.log(`Client ${socket.id} connected`)
 
+    if (Users.list.length < 2) {
+      var myInterval = setInterval(function () {
+        var hour = new Date().getHours();
+        var minute = new Date().getMinutes();
+        var sec = new Date().getSeconds();
+
+        if(sec < 10) {
+          sec = '0' + sec
+        }
+        var time = `${hour}:${minute}:${sec}`
+  
+        io.emit("time update", time)
+  
+      }, 1000);
+    }
+
     // remove User from users
     socket.on('disconnect', () => {
       Users.removeUser(socket.id)
