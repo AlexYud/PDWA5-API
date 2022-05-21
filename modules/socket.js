@@ -12,14 +12,7 @@ module.exports = function (io) {
 
     if (Users.list.length < 2) {
       var myInterval = setInterval(function () {
-        var hour = new Date().getHours();
-        var minute = new Date().getMinutes();
-        var sec = new Date().getSeconds();
-
-        if(sec < 10) {
-          sec = '0' + sec
-        }
-        var time = `${hour}:${minute}:${sec}`
+        var time = new Date().getTime();
   
         io.emit("time update", time)
   
